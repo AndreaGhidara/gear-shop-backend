@@ -2,11 +2,19 @@
   {
     "name": "Andrea Ghidara",
     "email": "Ghidara.andrea.99@gmail.com",
-    "message": "1234"
+    "message": "1234",
+    "state": "new"
   },
   {
     "name": "Andrea Pippo",
     "email": "prova@gmail.com",
-    "message": "ciao"
+    "message": "ciao",
+    "state": "working"
+  },
+  {
+    "name": "Andrea drago",
+    "email": "provaf@gmail.com",
+    "message": "ciao bel sitp",
+    "state": "end"
   }
 ]

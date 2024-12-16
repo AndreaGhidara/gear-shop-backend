@@ -1,14 +1,33 @@
 const express = require('express');
 const router = express.Router();
+const fs = require("fs");
+const path = require("path");
+
+const messagesFilePath = path.join(__dirname, "../data", "messages.json");
 
 // Prendo i Messaggi per l'owner
-router.get('/message-for-owner', (req, res) => {
-    console.log(req.body);
+router.get('/messages-for-owner', (req, res) => {
+    fs.readFile(messagesFilePath, "utf8", (err, data) => {
+            if (err) {
+                console.error("Errore nella lettura del file JSON:", err);
+                return res.status(500).json({ error: "Errore nella lettura delle recensioni" });
+            }
+    
+            let reviews = [];
+            try {
+                reviews = JSON.parse(data); // Parsiamo il contenuto del file
+            } catch (parseError) {
+                console.error("Errore di parsing del file JSON:", parseError);
+                return res.status(500).json({ error: "Errore di parsing del file JSON" });
+            }
+    
+            res.status(200).json({ data: reviews });
+        });
 
 })
 
 // Aggiungo i messagi per l'owner
-router.post('/message-for-owner', (req, res) => {
+router.post('/messages-for-owner', (req, res) => {
 
     const newMessage = req.body
 
