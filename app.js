@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors');
 var cookieParser = require('cookie-parser')
-const path = require("path");
+
 
 require('dotenv').config();
 
@@ -12,9 +12,6 @@ const authRoutes = require('./routes/auth');
 const productRoute = require('./routes/productRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const messageRoutes = require('./routes/messageRoutes');
-
-// const messagesFilePath = path.join(__dirname, "data", "messages.json");
-// const reviewsFilePath = path.join(__dirname, "data", "review.json");
 
 app.use(express.json());
 app.use(cookieParser())
