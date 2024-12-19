@@ -3,9 +3,9 @@ const router = express.Router();
 const fs = require("fs");
 const path = require("path");
 
+const verifyToken = require('../middleware/VerifyToken');
 
 const productsOnSaleFilePath = path.join(__dirname, "../data", "productsOnSale.json");
-const productOnSale = require('../data/productsOnSale.json')
 
 
 // Prodotti in saldo
@@ -35,7 +35,7 @@ router.get('/product-on-sale', (req, res) => {
 })
 
 // Creazione prodotto 
-router.post('/addProduct', (req, res) => {
+router.post('/addProduct', verifyToken, (req, res) => {
 
     const newProductData = req.body
 
@@ -99,7 +99,7 @@ router.post('/addProduct', (req, res) => {
     // }
 })
 
-router.delete('/delate/:ID', (req, res) => {
+router.delete('/delate/:ID', verifyToken,  (req, res) => {
 
     // console.log(req.body);
     console.log(req.params.ID);
@@ -139,7 +139,7 @@ router.delete('/delate/:ID', (req, res) => {
 })
 
 
-router.put('/editProduct/:ID', (req, res) => {
+router.put('/editProduct/:ID', verifyToken, (req, res) => {
 
     const idProduct = req.params.ID;
     const productData = req.body;
